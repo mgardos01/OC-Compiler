@@ -1,0 +1,32 @@
+#!/bin/bash
+echo "Making valgrind directory..."
+mkdir -p valgrind_files
+for i in ../oc-programs/*.oc; do
+    filename=`basename $i`
+    valgrind ./oc $i > valgrind_files/$filename.valgrind.output 2>&1
+    # ./oc $i
+done
+echo "Making token_files directory..."
+mkdir -p token_files
+echo "Moving *.tokens to token_files/..."
+for i in *.tokens; do
+    mv $i token_files/
+done
+echo "Making ast_files directory..."
+mkdir -p ast_files
+echo "Moving *.ast to ast_files/..."
+for i in *.ast; do 
+    mv $i ast_files/
+done
+echo "Making symbol_files directory..."
+mkdir -p symbol_files
+echo "Moving *.symbols to symbol_files/..."
+for i in *.symbols; do 
+    mv $i symbol_files/
+done
+echo "Making ocil_files directory..."
+mkdir -p ocil_files
+echo "Moving *.ocil to ocil_files/..."
+for i in *.ocil; do 
+    mv $i ocil_files/
+done
